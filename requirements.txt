@@ -1,0 +1,5 @@
+boto3
+google-cloud-storage
+pandas
+pyarrow
+python-dotenv
