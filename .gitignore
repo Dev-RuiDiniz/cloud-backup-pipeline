@@ -1,5 +1,3 @@
-# Python
-test/
 __pycache__/
 *.pyc
 *.pyo
@@ -7,19 +5,11 @@ __pycache__/
 .env
 .venv/
 
-
-# IDE
-debug.log
 .vscode/
 .idea/
-
-
-# Sistema
-data/output/
 logs/
+data/output/
 
-
-# Credenciais (IMPORTANTE)
 credentials/
 *.json
 *.ini

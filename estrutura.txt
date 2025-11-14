@@ -3,15 +3,17 @@ cloud-backup-pipeline/
 ├── .gitignore
 ├── requirements.txt
 ├── src/
-│ ├── aws_service.py
-│ ├── gcs_service.py
-│ ├── backup_pipeline.py
-│ ├── utils/
-│ │ ├── logger.py
-│ │ └── file_utils.py
+│   ├── aws_service.py
+│   ├── gcs_service.py
+│   ├── backup_pipeline.py
+│   └── utils/
+│       ├── logger.py
+│       └── file_utils.py
+├── scripts/
+│   ├── generate_reports.py
+├── tests/
+│   ├── test_backup.py
 ├── data/
-│ ├── input/
-│ └── output/
-└── scripts/
-├── run_backup.sh
-└── generate_reports.py
+│   ├── input/
+│   └── output/
+└── .env (não versionado)
