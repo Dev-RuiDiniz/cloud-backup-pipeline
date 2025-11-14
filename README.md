@@ -1,58 +1,65 @@
-📦 Cloud Backup Pipeline
-https://img.shields.io/badge/python-3.8+-blue.svg
-https://img.shields.io/badge/license-MIT-green.svg
-https://img.shields.io/badge/CI-GitHub%2520Actions-blue
+# Cloud Backup Pipeline
 
-Automação completa de geração, versionamento e armazenamento de relatórios em AWS S3 e Google Cloud Storage.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)]()
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)]()
+[![CI: GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-blue)]()
 
-📋 Sobre o Projeto
-Este projeto implementa uma solução completa de backup distribuído em nuvem, com geração automática de relatórios, upload simultâneo para AWS S3 e Google Cloud Storage, logs estruturados, testes automatizados e execução diária via GitHub Actions.
+Automação completa para geração, versionamento e armazenamento de relatórios em AWS S3 e Google Cloud Storage com logs estruturados e testes automatizados.
 
-Ele foi projetado para demonstrar habilidades reais em:
+---
 
-Arquitetura de pipelines de dados
+## Sumário
 
-Python para automação
+- [Sobre o Projeto](#sobre-o-projeto)  
+- [Principais Funcionalidades](#principais-funcionalidades)  
+- [Arquitetura e Estrutura do Repositório](#arquitetura-e-estrutura-do-repositório)  
+- [Pré-requisitos](#pré-requisitos)  
+- [Instalação](#instalação)  
+- [Configuração (.env)](#configuração-env)  
+- [Execução](#execução)  
+  - [Executar localmente (Python)](#executar-localmente-python)  
+  - [Executar via script Bash](#executar-via-script-bash)  
+- [GitHub Actions (CI/CD)](#github-actions-cicd)  
+- [Testes](#testes)  
+- [Exemplo de Saída](#exemplo-de-saída)  
+- [Possíveis Extensões Futuras](#possíveis-extensões-futuras)  
+- [Tecnologias](#tecnologias)  
+- [Contribuição](#contribuição)  
+- [Autor](#autor)  
+- [Licença](#licença)
 
-Infraestrutura em nuvem
+---
 
-Desenvolvimento escalável e modular
+## Sobre o Projeto
 
-Boas práticas de engenharia de software
+Este repositório contém uma pipeline de backup em nuvem que:
 
-Operações contínuas com GitHub Actions
+- Gera relatórios (CSV e Parquet) automaticamente;
+- Versiona arquivos por timestamp;
+- Faz upload simultâneo para AWS S3 e Google Cloud Storage;
+- Mantém logs estruturados por data;
+- Pode ser executada manualmente ou por GitHub Actions;
+- Inclui testes automatizados (pytest) para garantir confiabilidade.
 
-É um projeto ideal para compor o portfólio de um Desenvolvedor Python / Engenheiro de Software / Analista de Dados em ambientes modernos de nuvem.
+É ideal como projeto de portfólio para Desenvolvedores Python, Engenheiros de Software e Analistas de Dados.
 
-🎯 Objetivo do Projeto
-Criar uma pipeline completa capaz de:
+---
 
-✅ Gerar relatórios automaticamente (CSV e Parquet)
+## Principais Funcionalidades
 
-✅ Versioná-los utilizando timestamps
+- Geração de relatórios diários (CSV/Parquet).
+- Upload para múltiplos provedores (AWS S3 e GCS).
+- Versionamento automático por timestamps.
+- Logs rotativos e estruturados.
+- Execução local e remota (GitHub Actions).
+- Testes unitários com fixtures para simular uploads.
 
-✅ Enviar os arquivos simultaneamente para dois provedores de nuvem:
+---
 
-AWS S3
+## Arquitetura e Estrutura do Repositório
 
-Google Cloud Storage
-
-✅ Registrar logs estruturados por data
-
-✅ Ser executada manualmente ou automaticamente via GitHub Actions
-
-✅ Garantir confiabilidade com testes automatizados (pytest)
-
-🏗️ Arquitetura da Solução
-
-
-
-
-
-
-
-📁 Estrutura do Projeto
-text
+Raiz do projeto (resumo):
+```
 cloud-backup-pipeline/
 ├── README.md
 ├── .gitignore
@@ -63,7 +70,7 @@ cloud-backup-pipeline/
 │   └── output/
 ├── scripts/
 │   ├── generate_reports.py
-│   ├── run_backup.sh
+│   └── run_backup.sh
 ├── src/
 │   ├── aws_service.py
 │   ├── gcs_service.py
@@ -76,123 +83,132 @@ cloud-backup-pipeline/
 └── .github/
     └── workflows/
         └── daily_backup.yml
-🧩 Componentes do Sistema
-1. 📊 Geração de Relatórios
-Arquivo: scripts/generate_reports.py
-Gera relatórios diários com vendas, clientes e ticket médio.
+```
 
-2. ☁️ Serviço AWS S3
-Arquivo: src/aws_service.py
-Upload e download via Boto3.
+Breve descrição dos componentes:
+- scripts/generate_reports.py — Gera relatórios (ex.: vendas, clientes).
+- src/aws_service.py — Cliente/operacões AWS S3 (boto3).
+- src/gcs_service.py — Cliente/operacões GCS (google-cloud-storage).
+- src/backup_pipeline.py — Orquestra geração, versionamento, upload e logs.
+- src/utils — Utils (logger, manipulação de arquivos).
+- tests — Testes com pytest.
 
-3. 📦 Serviço Google Cloud Storage
-Arquivo: src/gcs_service.py
-Upload e download via Google Cloud SDK.
+---
 
-4. 🔄 Pipeline Principal
-Arquivo: src/backup_pipeline.py
-Integra toda a automação: geração, versionamento, logs e upload.
+## Pré-requisitos
 
-5. 🛠️ Utilitários
-Gerador de timestamps
+- Python 3.8+
+- Contas e credenciais AWS e Google Cloud configuradas
+- pip (para instalar dependências)
+- (Opcional) virtualenv/venv recomendado
 
-Log estruturado por dia
+---
 
-Salvamento de CSV/Parquet
+## Instalação
 
-6. 🧪 Testes
-Arquivo: tests/test_backup.py
-Testa upload em S3 e GCS usando fixtures.
+1. Clone o repositório:
+```bash
+git clone https://github.com/Dev-RuiDiniz/cloud-backup-pipeline.git
+cd cloud-backup-pipeline
+```
 
-7. ⚙️ Automação via GitHub Actions
-Arquivo: .github/workflows/daily_backup.yml
-Executa diariamente às 03:00 AM.
-
-8. 🖥️ Execução Local
-Arquivo: scripts/run_backup.sh
-
-🚀 Quick Start
-Pré-requisitos
-Python 3.8+
-
-Contas ativas na AWS e Google Cloud
-
-Acesso programático configurado
-
-▶️ Como Executar Localmente
-1. Instale as dependências
-bash
+2. Crie um ambiente virtual e instale dependências:
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Linux / macOS
+# .venv\Scripts\activate    # Windows (PowerShell)
 pip install -r requirements.txt
-2. Configure as variáveis de ambiente
-Crie um arquivo .env na raiz do projeto:
+```
 
-env
+---
+
+## Configuração (.env)
+
+Crie um arquivo `.env` na raiz do projeto com as variáveis necessárias. Exemplo:
+```env
 # AWS Configuration
-AWS_ACCESS_KEY_ID=seu_acesso_aqui
-AWS_SECRET_ACCESS_KEY=sua_chave_secreta_aqui
+AWS_ACCESS_KEY_ID=SEU_AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=SEU_AWS_SECRET_ACCESS_KEY
 AWS_DEFAULT_REGION=us-east-1
 AWS_S3_BUCKET=seu-bucket-s3
 
 # Google Cloud Configuration
+# Se usar GCP via variável de ambiente, aponte para o arquivo JSON
 GOOGLE_APPLICATION_CREDENTIALS=credentials/gcp_key.json
 GCS_BUCKET_NAME=seu-bucket-gcs
 
 # Project Settings
 LOG_LEVEL=INFO
-3. Configure as credenciais da Google Cloud
-Crie a pasta credentials/ e adicione o arquivo JSON da service account:
+```
 
-bash
-mkdir credentials
-# Cole o arquivo JSON da service account da GCP aqui
-4. Execute a pipeline
-Opção 1 - Python:
+Instruções adicionais:
+- Para a GCP você pode definir a variável `GOOGLE_APPLICATION_CREDENTIALS` apontando para o JSON da Service Account, ou injetar o conteúdo via GitHub Secrets (ver seção de CI).
+- Coloque o arquivo JSON em `credentials/gcp_key.json` (não comite credenciais sensíveis).
 
-bash
+---
+
+## Execução
+
+### Executar localmente (Python)
+Execute a pipeline diretamente:
+```bash
 python src/backup_pipeline.py
-Opção 2 - Script Bash:
+```
 
-bash
+### Executar via script Bash
+```bash
 bash scripts/run_backup.sh
-☁️ Execução na Nuvem (GitHub Actions)
-A pipeline está configurada para execução automática diária às 03:00 UTC.
+```
 
-Configuração necessária no GitHub:
-Acesse Settings → Secrets and variables → Actions
+Ambas as opções geram os relatórios em `data/output/` e fazem upload para os buckets configurados.
 
-Adicione os seguintes secrets:
+---
 
-Secret Name	Description
-AWS_ACCESS_KEY_ID	Sua Access Key da AWS
-AWS_SECRET_ACCESS_KEY	Sua Secret Access Key da AWS
-GCP_KEY_JSON	Conteúdo JSON da service account da GCP
-AWS_S3_BUCKET	Nome do bucket S3
-GCS_BUCKET_NAME	Nome do bucket GCS
-Fluxo do GitHub Actions:
-✅ Instalação automática do ambiente Python
+## GitHub Actions (CI/CD)
 
-✅ Configuração das credenciais AWS e GCP
+O workflow `.github/workflows/daily_backup.yml` está preparado para rodar diariamente (cron) e contém passos para:
+- Instalar dependências;
+- Configurar credenciais AWS e GCP (via Secrets);
+- Executar testes;
+- Rodar a pipeline.
 
-✅ Execução dos testes automatizados
+Secrets recomendados (Settings → Secrets and variables → Actions):
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_DEFAULT_REGION (opcional)
+- AWS_S3_BUCKET
+- GCP_KEY_JSON (conteúdo do JSON da service account)
+- GCS_BUCKET_NAME
 
-✅ Execução da pipeline de backup
+Observação: o workflow deve desserializar `GCP_KEY_JSON` para um arquivo durante a execução antes de exportar `GOOGLE_APPLICATION_CREDENTIALS`.
 
-✅ Logs detalhados da execução
+---
 
-🧪 Testando o Projeto
-Execute a suíte completa de testes:
+## Testes
 
-bash
-# Todos os testes
+Executar todos os testes:
+```bash
 pytest -v
+```
 
-# Testes com cobertura
+Executar testes com cobertura:
+```bash
 pytest --cov=src --cov-report=html
+```
 
-# Testes específicos
+Executar teste específico:
+```bash
 pytest tests/test_backup.py -v
-📊 Exemplo de Saída
-text
+```
+
+Os testes usam fixtures para simular uploads e arquivos temporários; verifique `tests/test_backup.py`.
+
+---
+
+## Exemplo de Saída
+
+Exemplo de logs e mensagens esperadas:
+```
 🔄 Iniciando Pipeline de Backup - 2024-01-15 10:30:00
 📊 Gerando relatórios...
 ✅ Relatório CSV gerado: sales_report_20240115_103000.csv
@@ -201,115 +217,59 @@ text
 📦 Upload para Google Cloud Storage... [SUCESSO]
 📝 Log registrado em: logs/backup_2024-01-15.log
 🎯 Pipeline concluída com sucesso!
-🧠 Principais Aprendizados
-✔ Arquitetura e Modularização Avançada
-Organização do código em camadas de serviço, utils, scripts e testes.
+```
 
-✔ Armazenamento em Nuvem
-Autenticação com AWS IAM
+---
 
-Uso do Boto3 para upload e download
+## Possíveis Extensões Futuras
 
-Autenticação com Google Service Account
+- Compressão automática (gzip/zip) dos arquivos antes do upload.
+- Notificações (Slack, Telegram, e-mail) sobre o status do backup.
+- API REST com FastAPI para acionar backups via HTTP.
+- Dashboard em Streamlit com histórico de uploads.
+- Suporte a mais provedores (Azure, Backblaze).
+- Orquestração com Airflow ou Prefect.
+- Política de retenção automática de versões antigas.
+- Monitoramento com métricas e alertas.
 
-Utilização do Google Cloud Storage client library
+---
 
-✔ Automação com Python
-Criação de relatórios dinâmicos com Pandas
+## Tecnologias
 
-Manipulação de dados e serialização em múltiplos formatos
+- Linguagem: Python 3.8+
+- AWS: boto3, S3, IAM
+- GCP: google-cloud-storage, Service Accounts
+- Data: pandas, CSV, Parquet
+- Testes: pytest
+- CI/CD: GitHub Actions
+- Logging: logging (rotating files)
+- Automação: Bash, Cron
 
-Versionamento automático por timestamps
+---
 
-Estruturação de logs profissionais
+## Contribuição
 
-✔ DevOps e CI/CD
-Pipeline automatizada com GitHub Actions
+Contribuições são bem-vindas! Sugestões de fluxo:
+1. Fork o projeto
+2. Crie uma branch: `git checkout -b feature/MinhaFeature`
+3. Commit suas mudanças: `git commit -m "Add: MinhaFeature"`
+4. Push para a branch: `git push origin feature/MinhaFeature`
+5. Abra um Pull Request
 
-Execução diária (cron schedule)
+Leia e siga as boas práticas do repositório e não inclua credenciais em commits.
 
-Configuração de secrets e variáveis sensíveis
+---
 
-Instalação de dependências e ambiente isolado no workflow
+## Autor
 
-✔ Testes Automatizados
-Validação de rotinas de upload
-
-Garantia de estabilidade da pipeline
-
-Uso de fixtures e arquivos temporários
-
-✔ Documentação e Boas Práticas
-README profissional
-
-Estrutura limpa de diretórios
-
-Comentários técnicos e código limpo
-
-🚀 Possíveis Extensões Futuras
-Compressão automática (gzip/zip) dos arquivos
-
-Sistema de notificações em Slack, Telegram ou e-mail
-
-API REST com FastAPI para acionar backups via HTTP
-
-Dashboard em Streamlit mostrando últimos uploads
-
-Suporte a múltiplos provedores (Azure, Backblaze, Cloudflare)
-
-Orquestração profissional com Airflow ou Prefect
-
-Política de retenção automática de versões antigas
-
-Monitoramento com métricas e alertas
-
-Interface web para gerenciamento dos backups
-
-🛠️ Tecnologias Utilizadas
-Categoria	Tecnologias
-Linguagem	Python 3.8+
-Cloud AWS	Boto3, AWS S3, IAM
-Cloud Google	Google Cloud Storage, Service Accounts
-Data Processing	Pandas, CSV, Parquet
-Testing	Pytest, Fixtures
-CI/CD	GitHub Actions, Secrets
-Logging	Logging module, Rotating files
-Automation	Cron, Bash scripts
-👨‍💻 Autor
-Rui Francisco de Paula Inácio Diniz
+Rui Francisco de Paula Inácio Diniz  
 Engenheiro de Software | Desenvolvedor Python | Analista de Dados
 
-https://img.shields.io/badge/GitHub-Dev--RuiDiniz-black?style=flat&logo=github
-https://img.shields.io/badge/LinkedIn-Perfil-blue?style=flat&logo=linkedin
+GitHub: https://github.com/Dev-RuiDiniz  
+LinkedIn: (link do perfil)
 
-📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+---
 
-🔄 Fluxo de Desenvolvimento
-Desenvolvimento Local: Teste e validação das funcionalidades
+## Licença
 
-Commit e Push: Versionamento no GitHub
-
-CI/CD Automático: GitHub Actions executa testes
-
-Deploy Automático: Pipeline é executada diariamente
-
-Monitoramento: Verificação dos logs e status
-
-🤝 Contribuindo
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-Fork o projeto
-
-Criar uma branch para sua feature (git checkout -b feature/AmazingFeature)
-
-Commit suas mudanças (git commit -m 'Add some AmazingFeature')
-
-Push para a branch (git push origin feature/AmazingFeature)
-
-Abrir um Pull Request
-
-⭐ Se este projeto foi útil, considere dar uma estrela no repositório!
-
-Este projeto foi desenvolvido para demonstrar habilidades reais em arquitetura de pipelines de dados, Python para automação, infraestrutura em nuvem e desenvolvimento escalável e modular.
-
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo `LICENSE` para detalhes.
