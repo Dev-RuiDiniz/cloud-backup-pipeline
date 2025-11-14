@@ -1,0 +1,17 @@
+cloud-backup-pipeline/
+├── README.md
+├── .gitignore
+├── requirements.txt
+├── src/
+│ ├── aws_service.py
+│ ├── gcs_service.py
+│ ├── backup_pipeline.py
+│ ├── utils/
+│ │ ├── logger.py
+│ │ └── file_utils.py
+├── data/
+│ ├── input/
+│ └── output/
+└── scripts/
+├── run_backup.sh
+└── generate_reports.py
