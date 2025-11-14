@@ -2,6 +2,13 @@ cloud-backup-pipeline/
 ├── README.md
 ├── .gitignore
 ├── requirements.txt
+├── .env               (NÃO versionar)
+├── data/
+│   ├── input/
+│   └── output/
+├── scripts/
+│   ├── generate_reports.py
+│   ├── run_backup.sh
 ├── src/
 │   ├── aws_service.py
 │   ├── gcs_service.py
@@ -9,11 +16,8 @@ cloud-backup-pipeline/
 │   └── utils/
 │       ├── logger.py
 │       └── file_utils.py
-├── scripts/
-│   ├── generate_reports.py
 ├── tests/
 │   ├── test_backup.py
-├── data/
-│   ├── input/
-│   └── output/
-└── .env (não versionado)
+└── .github/
+    └── workflows/
+        └── daily_backup.yml
