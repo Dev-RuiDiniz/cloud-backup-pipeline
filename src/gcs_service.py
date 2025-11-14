@@ -3,7 +3,6 @@ from google.cloud import storage
 class GCSService:
     def __init__(self, bucket_name: str):
         self.client = storage.Client()
-        self.bucket_name = bucket_name
         self.bucket = self.client.bucket(bucket_name)
 
     def upload_file(self, file_path: str, destination_blob: str):

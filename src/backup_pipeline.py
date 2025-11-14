@@ -13,7 +13,6 @@ class BackupPipeline:
         logger.info("Pipeline iniciada.")
 
         df = pd.DataFrame({"vendas": [10, 20, 30]})
-
         timestamp = FileUtils.generate_timestamp()
         filename = f"relatorio_{timestamp}"
 

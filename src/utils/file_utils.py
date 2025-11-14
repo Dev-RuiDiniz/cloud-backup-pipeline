@@ -10,6 +10,7 @@ class FileUtils:
     @staticmethod
     def save_dataframe(df: pd.DataFrame, filename: str, output_dir: str = "data/output"):
         os.makedirs(output_dir, exist_ok=True)
+
         csv_path = os.path.join(output_dir, f"{filename}.csv")
         parquet_path = os.path.join(output_dir, f"{filename}.parquet")
 
