@@ -1,9 +1,9 @@
 name: Daily Cloud Backup
 
 on:
-  schedule:
-    - cron: "0 3 * * *"  # Executa às 03:00
-  workflow_dispatch:
+  # schedule:
+  #   - cron: "0 3 * * *"  # Executa às 03:00 - Comentado para desativar a execução diária
+  # workflow_dispatch: # Comentado para desativar a execução manual pela UI
 
 jobs:
   backup:
